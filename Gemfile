@@ -21,6 +21,7 @@ gem 'mimemagic', '~> 0.3.0'
 gem 'bcrypt', '~> 3.1'
 
 gem 'jquery-rails'
+gem 'bootstrap', '~> 5.0.0.beta3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
