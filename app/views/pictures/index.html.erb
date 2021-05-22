@@ -1,21 +1,22 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Pictures</h1>
-
-<table>
+<table class="table align-middle">
   <thead>
     <tr>
       <th>Image</th>
       <th>Comment</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @pictures.each do |picture| %>
       <tr>
-        <td><%= picture.image %></td>
+        <td><%= image_tag picture.image.url, class: 'img-fluid' %></td>
         <td><%= picture.comment %></td>
+        <td>
+          <span><%= image_tag picture.user.image.url, class: 'rounded-circle img-thumbnail' %></span>
+          <%= picture.user.name %>
+        </td>
         <td><%= link_to 'Show', picture %></td>
         <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
         <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,7 +24,5 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Picture', new_picture_path %>
