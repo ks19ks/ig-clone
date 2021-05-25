@@ -1,12 +1,23 @@
 <p>
+  <strong>User:</strong>
+  <%= @picture.user.name %>
+</p>
+<p>
   <strong>Image:</strong>
   <%= image_tag @picture.image.url %>
 </p>
-
 <p>
   <strong>Comment:</strong>
   <%= @picture.comment %>
 </p>
-
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<% unless @picture.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'Remove from favorites', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+  <% else %>
+    <%= link_to 'Add to favorites', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-primary btn-sm' %>
+  <% end %>
+<% end %>
+<div class="mt-3">
+  <%= link_to 'Edit', edit_picture_path(@picture) %> |
+  <%= link_to 'Back', pictures_path %>
+</div>
