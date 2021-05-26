@@ -1,0 +1,24 @@
+<h1>Favorites</h1>
+<table class="table align-middle">
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Comment</th>
+      <th>User</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= image_tag favorite.picture.image.url, class: 'img-fluid' %></td>
+        <td><%= favorite.picture.comment %></td>
+        <td>
+          <span><%= image_tag favorite.picture.user.image.url, class: 'rounded-circle img-thumbnail' %></span>
+          <%= favorite.picture.user.name %>
+        </td>
+        <td><%= link_to 'Show', favorite.picture %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
