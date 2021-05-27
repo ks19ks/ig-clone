@@ -1,0 +1,14 @@
+<h1>You successfully posted your picture!</h1>
+<hr>
+<p>
+  <strong>User:</strong>
+  <%= @picture.user.name %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @picture.image.url %>
+</p>
+<p>
+  <strong>Comment:</strong>
+  <%= @picture.comment %>
+</p>
