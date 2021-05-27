@@ -24,6 +24,9 @@
                 <%= link_to 'Profile', user_path(current_user.id), class: 'nav-link' %>
               </li>
               <li class="nav-item">
+                <%= link_to 'New Post', new_picture_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
                 <%= link_to 'Favorites', favorites_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
