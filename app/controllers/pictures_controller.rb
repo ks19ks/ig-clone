@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: %i[ show edit update destroy ]
+  before_action :check_valid_user, only: %i[ edit update destroy ]
 
   # GET /pictures or /pictures.json
   def index
@@ -76,5 +77,9 @@ class PicturesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def picture_params
       params.require(:picture).permit(:image, :image_cache, :comment)
+    end
+
+    def check_valid_user
+      redirect_to pictures_path unless @picture.user_id == current_user.id
     end
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :check_valid_user, only: %i[ edit update ]
 
   def show
   end
@@ -40,5 +41,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:image, :image_cache, :name, :email, :password, :password_confirmation)
+    end
+
+    def check_valid_user
+      redirect_to user_path(current_user) unless @user.id == current_user.id
     end
 end
