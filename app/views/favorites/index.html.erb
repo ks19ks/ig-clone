@@ -1,24 +1,28 @@
-<h1>Favorites</h1>
-<table class="table align-middle">
-  <thead>
-    <tr>
-      <th>Picture</th>
-      <th>Comment</th>
-      <th>User</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= image_tag favorite.picture.image.url, class: 'img-fluid' %></td>
-        <td><%= favorite.picture.comment %></td>
-        <td>
-          <span><%= image_tag favorite.picture.user.image.url, class: 'rounded-circle img-thumbnail' %></span>
-          <%= favorite.picture.user.name %>
-        </td>
-        <td><%= link_to 'Show', favorite.picture %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Your favorites</h1>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+  <% @favorites.each do |favorite| %>
+    <div class="col">
+      <div class="card shadow-sm">
+        <%= image_tag favorite.picture.image.url, class: 'bd-placeholder-img card-img-top', width: "100%", height: "225" %>
+        <div class="card-body">
+          <p class="card-text">
+            <%= favorite.picture.comment %><br>
+            <span class="text-muted">by <%= favorite.picture.user.name %></span>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <%= link_to 'View', favorite.picture, class: 'btn btn-sm btn-outline-secondary' %>
+            </div>
+            <small class="text-muted">
+              <% if favorite.picture.created_at.strftime('%Y/%m/%d') == Time.now.strftime('%Y/%m/%d') %>
+                <%= favorite.picture.created_at.strftime('%H:%M') %>
+              <% else %>
+                <%= favorite.picture.created_at.strftime('%Y/%m/%d') %>
+              <% end %>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
