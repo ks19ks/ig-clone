@@ -14,7 +14,7 @@
     <%= form.file_field :image, class: 'form-control' %>
     <% if @picture.image && @picture.image.url %>
       <div class="mt-2">
-        <%= image_tag(@picture.image.url) %>
+        <%= image_tag(@picture.image.url, class: 'img-fluid') %>
       </div>
     <% end %>
     <%= form.hidden_field :image_cache %>

@@ -9,18 +9,18 @@
         </ul>
     </div>
   <% end %>
-  <%= f.label :image, "Profile image", class: 'form-label' %>
+  <%= f.label :image, class: 'form-label mt-2' %>
   <% if user.image && user.image.url %>
     <p><%= image_tag user.image.url, class: 'rounded-circle img-thumbnail' %></p>
   <% end %>
   <%= f.file_field :image, class: 'form-control' %>
-  <%= f.label :name, class: 'form-label' %>
+  <%= f.label :name, class: 'form-label mt-2' %>
   <%= f.text_field :name, class: 'form-control' %>
-  <%= f.label :email, class: 'form-label' %>
+  <%= f.label :email, class: 'form-label mt-2' %>
   <%= f.email_field :email, class: 'form-control' %>
-  <%= f.label :password, class: 'form-label' %>
+  <%= f.label :password, class: 'form-label mt-2' %>
   <%= f.password_field :password, class: 'form-control' %>
-  <%= f.label :password_confirmation, class: 'form-label' %>
+  <%= f.label :password_confirmation, class: 'form-label mt-2' %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
   <%= f.submit class: 'btn btn-primary mt-3' %>
 <% end %>
