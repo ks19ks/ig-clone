@@ -10,34 +10,64 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Instagram</a>
+        <%= link_to 'Instagram', pictures_path, class: 'navbar-brand' %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item">
-              <%= link_to 'Feed', pictures_path, class: 'nav-link' %>
-            </li>
+          <ul class="navbar-nav me-auto mb-2 mb-sm-0 nav-masthead">
             <% if logged_in? %>
               <li class="nav-item">
-                <%= link_to 'Post', new_picture_path, class: 'nav-link' %>
+                <% if controller.controller_name == 'pictures' && controller.action_name == 'index' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Feed', pictures_path, class: navactive %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Favorites', favorites_path, class: 'nav-link' %>
+                <% if controller.controller_name == 'pictures' && controller.action_name == 'new' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Post', new_picture_path, class: navactive %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Profile', user_path(current_user.id), class: 'nav-link' %>
+                <% if controller.controller_name == 'favorites' && controller.action_name == 'index' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Favorites', favorites_path, class: navactive %>
+              </li>
+              <li class="nav-item">
+                <% if controller.controller_name == 'users' && controller.action_name == 'show' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Profile', user_path(current_user.id), class: navactive %>
               </li>
               <li class="nav-item">
                 <%= link_to 'Logout', session_path(current_user.id), method: :delete, class: 'nav-link' %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to 'Sign up', new_user_path, class: 'nav-link' %>
+                <% if controller.controller_name == 'users' && controller.action_name == 'new' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Sign up', new_user_path, class: navactive %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Login', new_session_path, class: 'nav-link' %>
+                <% if controller.controller_name == 'sessions' && controller.action_name == 'new' %>
+                  <% navactive = 'nav-link active' %>
+                <% else %>
+                  <% navactive = 'nav-link' %>
+                <% end %>
+                <%= link_to 'Login', new_session_path, class: navactive %>
               </li>
             <% end %>
           </ul>
